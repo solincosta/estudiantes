@@ -94,6 +94,10 @@ export default {
       alert(id);
       //Uni lineA
 
+      //Aquí actulsdkjfhdsjkhvsjkdhfkjdsfashdjkfsdhkfjadsf
+
+      console.log("ACT")
+
     },
 
     guardarEstudiante: function(){
