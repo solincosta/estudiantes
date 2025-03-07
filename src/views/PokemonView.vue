@@ -1,12 +1,13 @@
 <template>
   <div class="pokemon-container">
-    <div v-for="pok in pokemones" :key="pok.id">
+    <div v-for="pokemon in pokemones" :key="pokemon.id">
         <PokemonComponent
-            :id="pok.id"
-            :nombre="pok.nombre"
-            :tipo="pok.type_name"
-            :imagen="pok.imagen"
-            :color="pok.type_color"
+            :id="pokemon.id"
+            :nombre="pokemon.nombre"
+            :tipo="pokemon.type_name"
+            :imagen="pokemon.imagen"
+            :color="pokemon.type_color"
+            :disponible="pokemon.disponible"
         ></PokemonComponent>
     </div>
   </div>
