@@ -1,8 +1,22 @@
 <template>
-  <div class="card">
-    <div v-if="disponible == 1" class="flotante disponible">Disponible</div>
-    <div v-else class="flotante no-disponible">No Disponible</div>
+  
+  <div  v-if="disponible == 1" class="card card-si">    
+    <div class="flotante disponible">Disponible</div>
+    <img class="imagen-pokemon" :src="imagen" alt="" />
+    <h3 class="titulo-pokemon">{{ nombre }}</h3>
+    <span
+      :style="{
+        'background-color': color,
+      }"
+      class="tipo-pokemon"
+      >{{ tipo }}</span
+    >
+    <ButtonPrime label="Ver" severity="info" />
     
+  </div>
+
+  <div v-else class="card card-no">
+    <div class="flotante no-disponible">No Disponible</div>
     <img class="imagen-pokemon" :src="imagen" alt="" />
     <h3 class="titulo-pokemon">{{ nombre }}</h3>
     <span
@@ -49,9 +63,22 @@ export default {
   color: white;
 }
 
+.card-si:hover{
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    scale: 1.02;
+}
+
+.card-no{
+    background-color:  rgba(0, 0, 0, 0.2);
+    cursor: not-allowed;
+}
+
+
 .no-disponible {
   background-color: red;
   color: white;
+  
 }
 
 .card {
