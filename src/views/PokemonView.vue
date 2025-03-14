@@ -1,6 +1,10 @@
 <template>
   <div class="pokemon-container">
-    <div v-for="pokemon in pokemones" :key="pokemon.id">
+    <div
+      v-for="pokemon in pokemones"
+      :key="pokemon.id"
+      @click="openPokemon(pokemon)"
+    >
       <PokemonComponent
         :id="pokemon.id"
         :nombre="pokemon.nombre"
@@ -16,19 +20,22 @@
     :visible="modalPokemonVisible"
     maximizable
     modal
-    header="Header"
+    header="Información del Pokemon"
     :style="{ width: '50rem' }"
     :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
   >
-    <p class="m-0">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
-    </p>
+    <div>
+      <ButtonPrime @click="closeModal" label="Atras" />
+      <img class="imagen-pokemon" :src="pokemon.imagen" alt="" />
+      <h3 class="titulo-pokemon">{{ pokemon.nombre }}</h3>
+      <span
+        :style="{
+          'background-color': pokemon.color,
+        }"
+        class="tipo-pokemon"
+        >{{ tipo }}</span
+      >
+    </div>
   </DialogPrime>
 </template>
 <script>
@@ -40,9 +47,26 @@ export default {
     return {
       pokemones: [],
       modalPokemonVisible: false,
+      pokemon: {
+        id: 0,
+        imagen: "",
+        nombre: "",
+        tipo: "",
+        color: "",
+        disponible: false,
+      },
     };
   },
   methods: {
+    openPokemon: function (pokemon) {
+      this.pokemon = pokemon;
+      this.modalPokemonVisible = true;
+    },
+
+    closeModal: function () {
+      this.modalPokemonVisible = false;
+    },
+
     getAllPokemon: async function () {
       let url =
         "https://cobuses.com.co/APIV2/model/pokemon.php?dato=getallpokemon";
